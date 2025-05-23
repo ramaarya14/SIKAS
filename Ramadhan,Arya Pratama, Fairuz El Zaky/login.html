@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Login SIKAS</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+  * {
+    box-sizing: border-box;
+  }
+  body, html {
+    margin: 0; padding: 0; height: 100%;
+    font-family: 'Poppins', sans-serif;
+    background: #A4B465;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .login-container {
+    background: #fff;
+    padding: 40px 35px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    width: 340px;
+  }
+  .login-container h2 {
+    margin-bottom: 25px;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+  }
+  .login-container label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #555;
+    font-size: 0.95rem;
+  }
+  .login-container input[type="text"],
+  .login-container input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border: 2px solid #A4B465;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+  .login-container input[type="text"]:focus,
+  .login-container input[type="password"]:focus {
+    border-color: #764ba2;
+    outline: none;
+  }
+  .login-container button {
+    width: 100%;
+    padding: 12px;
+    background-color: #764ba2;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .login-container button:hover {
+    background-color: #5a368a;
+  }
+  .error-message {
+    color: #e74c3c;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    display: none;
+  }
+  .tbl-green {
+    display: block; 
+    text-align: center; 
+    padding: 12px; 
+    background-color: #A4B465; 
+    color: white; 
+    border-radius: 8px; 
+    text-decoration: none; 
+    margin-top: 20px; 
+    transition: background-color 0.3s ease; 
+    cursor: pointer;
+  }
+  .tbl-green:hover {
+    background-color: #e40000; 
+  }
+  .error-message {
+    color: #e74c3c;
+  }
+
+</style>
+</head>
+<body>
+  <div class="login-container" role="main" aria-labelledby="login-title">
+    <h2 id="login-title">Login</h2>
+    <form id="login-form" novalidate>
+      <div class="error-message" id="error-msg" role="alert"></div>
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" autocomplete="username" required />
+      
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" autocomplete="current-password" required />
+      <a href="index.html" class="tbl-green">Login</a>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('login-form');
+    const errorMsg = document.getElementById('error-msg');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      errorMsg.style.display = 'none';
+      errorMsg.textContent = '';
+
+      const username = form.username.value.trim();
+      const password = form.password.value.trim();
+
+      if (!username) {
+        errorMsg.textContent = 'Harap masukkan username atau email.';
+        errorMsg.style.display = 'block';
+        form.username.focus();
+        return;
+      }
+      if (!password) {
+        errorMsg.textContent = 'Harap masukkan kata sandi.';
+        errorMsg.style.display = 'block';
+        form.password.focus();
+        return;
+      }
+
+      // For demo: Show alert (In real app, submit to server or process auth)
+      alert('Berhasil login dengan username: ' + username);
+      form.reset();
+    });
+  </script>
+</body>
+</html>
